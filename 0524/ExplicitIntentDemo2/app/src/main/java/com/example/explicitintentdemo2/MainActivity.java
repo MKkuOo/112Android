@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
     private TextView output;
 
     @Override
@@ -38,14 +37,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected  void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
+        switch (requestCode) {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Bundle bundle = data.getExtras();
-                    output.setText("結果：" + bundle.getString("RESULT"));
+                    output.setText("計算結果：" + bundle.getString("RESULT"));
                 }
                 break;
         }

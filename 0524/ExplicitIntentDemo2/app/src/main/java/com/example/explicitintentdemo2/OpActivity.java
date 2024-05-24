@@ -15,50 +15,55 @@ public class OpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_op);
+
         CheckBox chkDivide = (CheckBox) findViewById(R.id.chkDivide);
         chkDivide.setEnabled(false);
 
         Button button2 = (Button) findViewById(R.id.button2);
 
         button2.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 int opd1, opd2;
                 double result = 0.0;
-                RadioButton rdbAdd, rdbSubtract, rdbMultiply, rdbDivide;
+                RadioButton rdbAdd, rdbSub, rdbMul, rdbDiv;
 
                 Bundle bundle = OpActivity.this.getIntent().getExtras();
-                if (bundle == null) return;
+                if (bundle == null) {
+                    return;
+                }
+
                 opd1 = Integer.parseInt(bundle.getString("OPERANDO1"));
                 opd2 = Integer.parseInt(bundle.getString("OPERANDO2"));
+
                 rdbAdd = (RadioButton) findViewById(R.id.rdbAdd);
                 if (rdbAdd.isChecked()) {
                     chkDivide.setEnabled(false);
                     result = opd1 + opd2;
                 }
-                rdbSubtract = (RadioButton) findViewById(R.id.rdbSubtract);
-                if (rdbSubtract.isChecked()) {
+                rdbSub = (RadioButton) findViewById(R.id.rdbSubtract);
+                if (rdbSub.isChecked()) {
                     chkDivide.setEnabled(false);
                     result = opd1 - opd2;
                 }
-                rdbMultiply = (RadioButton) findViewById(R.id.rdbMultiply);
-                if (rdbMultiply.isChecked()) {
+                rdbMul = (RadioButton) findViewById(R.id.rdbMultiply);
+                if (rdbMul.isChecked()) {
                     chkDivide.setEnabled(false);
                     result = opd1 * opd2;
                 }
-                rdbDivide = (RadioButton) findViewById(R.id.rdbDivide);
-                //chkDivide = (CheckBox) findViewById(R.id.chkDivide);
-                if (rdbDivide.isChecked()) {
+                rdbDiv = (RadioButton) findViewById(R.id.rdbDivide);
+                //CheckBox chkDivide = (CheckBox) findViewById(R.id.chkDivide);
+                if (rdbDiv.isChecked()) {
                     chkDivide.setEnabled(true);
-                    if (chkDivide.isChecked())
-                        result = (double) opd1/ opd2;
-                    else
-                        result = opd1 / (double)opd2;
+                    if (chkDivide.isChecked()) {
+                        result = opd1 / opd2;
+                    } else {
+                        result = opd1 / (double) opd2;
+                    }
                 }
                 Intent rIntent = new Intent();
                 Bundle rbundle = new Bundle();
-                rbundle.putDouble("RESULT", result);
+                rbundle.putString("RESULT", String.valueOf(result));
                 rIntent.putExtras(rbundle);
                 setResult(RESULT_OK, rIntent);
                 finish();
