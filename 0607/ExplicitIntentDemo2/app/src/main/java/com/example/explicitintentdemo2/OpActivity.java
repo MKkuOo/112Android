@@ -15,12 +15,10 @@ public class OpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_op);
-
         CheckBox chkDivide = (CheckBox) findViewById(R.id.chkDivide);
-        chkDivide.setEnabled(false);
+        //chkDivide.setEnabled(false);
 
         Button button2 = (Button) findViewById(R.id.button2);
-
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,28 +31,28 @@ public class OpActivity extends AppCompatActivity {
                     return;
                 }
 
-                opd1 = Integer.parseInt(bundle.getString("OPERANDO1"));
-                opd2 = Integer.parseInt(bundle.getString("OPERANDO2"));
+                opd1 = Integer.parseInt(bundle.getString("OPERAND01"));
+                opd2 = Integer.parseInt(bundle.getString("OPERAND02"));
 
                 rdbAdd = (RadioButton) findViewById(R.id.rdbAdd);
                 if (rdbAdd.isChecked()) {
-                    chkDivide.setEnabled(false);
+                    //chkDivide.setEnabled(false);
                     result = opd1 + opd2;
                 }
                 rdbSub = (RadioButton) findViewById(R.id.rdbSubtract);
                 if (rdbSub.isChecked()) {
-                    chkDivide.setEnabled(false);
+                    //chkDivide.setEnabled(false);
                     result = opd1 - opd2;
                 }
                 rdbMul = (RadioButton) findViewById(R.id.rdbMultiply);
                 if (rdbMul.isChecked()) {
-                    chkDivide.setEnabled(false);
+                    //chkDivide.setEnabled(false);
                     result = opd1 * opd2;
                 }
                 rdbDiv = (RadioButton) findViewById(R.id.rdbDivide);
                 //CheckBox chkDivide = (CheckBox) findViewById(R.id.chkDivide);
                 if (rdbDiv.isChecked()) {
-                    chkDivide.setEnabled(true);
+                    //chkDivide.setEnabled(true);
                     if (chkDivide.isChecked()) {
                         result = opd1 / opd2;
                     } else {
@@ -63,7 +61,8 @@ public class OpActivity extends AppCompatActivity {
                 }
                 Intent rIntent = new Intent();
                 Bundle rbundle = new Bundle();
-                rbundle.putString("RESULT", String.valueOf(result));
+
+                rbundle.putDouble("RESULT", result);
                 rIntent.putExtras(rbundle);
                 setResult(RESULT_OK, rIntent);
                 finish();

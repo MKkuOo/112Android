@@ -26,12 +26,7 @@ public class MainActivity extends AppCompatActivity {
             public void onActivityResult(Double o) {
                 output.setText("計算結果: " + o);
             }
-
-//            @Override
-//        public void onActivityResult(double o) {
-//            output.setText("計算結果: " + o);
-//        }
-    });
+       });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         output = (TextView) findViewById(R.id.lblOutput);
         Button button = (Button) findViewById(R.id.button);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
